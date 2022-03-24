@@ -1,23 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import OnlineEditor from './components/OnlineEditor'
-import reducer from './redux/reducer'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import $ from 'jquery'
-import Popper from 'popper.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/styles.scss'
 import 'normalize.css/normalize.css'
+import KijijiApplication from './components/KijijiApplication'
 
-const store = createStore(reducer,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 const jsx = (
-    <Provider store={store}>
-        <OnlineEditor/>
-    </Provider>
+    <KijijiApplication />
 )
 
 ReactDOM.render(jsx, document.getElementById('app'))
 
-export default store

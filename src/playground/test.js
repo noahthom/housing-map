@@ -1,19 +1,19 @@
-const { default: axios } = require('axios')
+const kijiji = require("kijiji-scraper");
 
-const url = 'https://api.jdoodle.com/v1/execute'
+const options = {
+    maxResults: 20
+};
 
-const sendCode = () => {
-    const data = {
-        script: 'adjkascjkasdcjnkac',
-        language: 'nodejs',
-        versionIndex: '4',
-        clientId: '219371fc2049e94f7eea98354f4829f9',
-        clientSecret: '81c29c9d412c7c87803dbca03d9c3d0ed75cb5669c3e6c4773acd5204310f517'
+const params = {
+    locationId: 1700203,  
+    categoryId: 30349001,  
+    sortByName: "priceAsc"  // Show the cheapest listings first
+};
+
+// Scrape using returned promise
+kijiji.search(params, options).then(ads => {
+    // Use the ads array
+    for (let i = 0; i < ads.length; ++i) {
+        console.log(ads[i].description);
     }
-
-    axios.post(url, data).then((response) => console.log(response)).catch((error) => console.log(error))
-
-}
-
-sendCode()
-
+}).catch(console.error);
