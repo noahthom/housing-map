@@ -1,7 +1,7 @@
 
 const locationOptions = [
     {label: "Banff and Canmore", value: 1700234},
-    {label: "Calgary", value: 1700202},
+    {label: "Calgary", value: 1700199},
     {label: "Edmonton", value: 1700203},
     {label: "St Albert", value: 1700205},
     {label: "Strathcona County", value: 1700204},
