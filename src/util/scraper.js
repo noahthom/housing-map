@@ -1,9 +1,15 @@
 const axios = require('axios')
 import store from '../app'
-import { addHouses } from '../redux/actions/houses'
+import { addHouses, setCenter } from '../redux/actions/houses'
 
 
-const searchKijiji = (locationId, minPrice, maxPrice, bedrooms, bathrooms) => {
+const searchKijiji = async (location, locationId, minPrice, maxPrice, bedrooms, bathrooms) => {
+
+    
+
+    const centerMapboxUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + encodeURIComponent(location) + '.json?access_token=pk.eyJ1Ijoibm9haHRob20iLCJhIjoiY2t0bm1sMzV0MDRiMzJ4cG1rODBxeTFqNyJ9.2KOTXZtFViJvTomSge7HIQ&limit=1'
+    const centerResponse = await axios.get(centerMapboxUrl)
+    store.dispatch(setCenter(centerResponse.data.features[0].center[1], centerResponse.data.features[0].center[0]))
     
     const body = {
         locationId,
@@ -53,6 +59,7 @@ const searchKijiji = (locationId, minPrice, maxPrice, bedrooms, bathrooms) => {
 
         store.dispatch(addHouses(finalHouses))
 
+        
 
         console.log('done')
     })

@@ -18,7 +18,7 @@ const SearchBar = () => {
             <input type="number" value={maxPrice} onChange={(e) => setMaxPrice(parseInt(e.target.value))} />
             <input type="number" value={bedrooms} onChange={(e) => setBedrooms(parseInt(e.target.value))} />
             <input type="number" value={bathrooms} onChange={(e) => setBathrooms(parseInt(e.target.value))} />
-            <button onClick={() => searchKijiji(location.value, minPrice, maxPrice, bedrooms, bathrooms)}>Search</button>
+            <button onClick={() => searchKijiji(location.label, location.value, minPrice, maxPrice, bedrooms, bathrooms)}>Search</button>
         </div>
     )
 

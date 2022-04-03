@@ -8,16 +8,12 @@ import store from '../app'
 
 const HouseMap = (props) => {
 
-    const [mapCenter, setMapCenter] = useState({lat: 0, lng: 0})
     const [houses, setHouses] = useState([])
     const [zoom, setZoom] = useState(12)
     
 
     useEffect(() => {
         setHouses(props.houses)
-        navigator.geolocation.getCurrentPosition((position) => {
-            setMapCenter({lat: position.coords.latitude, lng: position.coords.longitude})
-        })
     })
 
 
@@ -35,7 +31,10 @@ const HouseMap = (props) => {
             {props.houses.length !== 0 && (
             <GoogleMapReact
             bootstrapURLKeys={{key: "AIzaSyBmdWIAJ1F4Iv8vaJoqH-qznJkO_2omCog"}}
-            center={mapCenter}
+            center={{
+                lat: props.lat,
+                lng: props.lng
+            }}
             defaultZoom={zoom}
             onChildMouseEnter={onMouseHoverCallBack}
             onChildMouseLeave={onMouseHoverCallBack}>
@@ -48,7 +47,9 @@ const HouseMap = (props) => {
 
 const mapStatetoProps = (state) => {
     return {
-        houses: state
+        houses: state.houses,
+        lat: state.lat,
+        lng: state.lng
     }
 }
 
