@@ -13,7 +13,9 @@ const store = createStore(housesReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && 
 
 
 const jsx = (
-    <KijijiApplication />
+    <Provider store={store}>
+        <KijijiApplication />
+    </Provider>
 )
 
 ReactDOM.render(jsx, document.getElementById('app'))

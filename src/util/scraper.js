@@ -3,10 +3,10 @@ import store from '../app'
 import { addHouses } from '../redux/actions/houses'
 
 
-const searchKijiji = (location, minPrice, maxPrice, bedrooms, bathrooms) => {
+const searchKijiji = (locationId, minPrice, maxPrice, bedrooms, bathrooms) => {
     
     const body = {
-        locationId: location,
+        locationId,
         minPrice,
         maxPrice,
         bedrooms,
@@ -28,6 +28,7 @@ const searchKijiji = (location, minPrice, maxPrice, bedrooms, bathrooms) => {
                 location: house.attributes.location,
                 url: house.url,
                 id: house.id,
+                show: false
             }
         })
 
@@ -46,11 +47,13 @@ const searchKijiji = (location, minPrice, maxPrice, bedrooms, bathrooms) => {
             return {
                 ...house,
                 lat: resolvedCoords[i].data.features[0].center[1],
-                lon: resolvedCoords[i].data.features[0].center[0]
+                lng: resolvedCoords[i].data.features[0].center[0]
             }
         })
 
         store.dispatch(addHouses(finalHouses))
+
+
         console.log('done')
     })
     
