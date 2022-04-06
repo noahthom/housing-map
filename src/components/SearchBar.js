@@ -12,13 +12,48 @@ const SearchBar = () => {
     const [bathrooms, setBathrooms] = useState(1)
 
     return (
-        <div>
-            <Select value={location} onChange={(value) => setLocation(value)} options={locationOptions}/>
-            <input type="number" value={minPrice} onChange={(e) => setMinPrice(parseInt(e.target.value))} />
-            <input type="number" value={maxPrice} onChange={(e) => setMaxPrice(parseInt(e.target.value))} />
-            <input type="number" value={bedrooms} onChange={(e) => setBedrooms(parseInt(e.target.value))} />
-            <input type="number" value={bathrooms} onChange={(e) => setBathrooms(parseInt(e.target.value))} />
-            <button onClick={() => searchKijiji(location.label, location.value, minPrice, maxPrice, bedrooms, bathrooms)}>Search</button>
+        <div className="container my-4">
+            <div className="row">
+                <div className="col">
+                    City
+                </div>
+                <div className="col">
+                    Max Price
+                </div>
+                <div className="col">
+                    Min Price
+                </div>
+                <div className="col">
+                    Number of Bedrooms
+                </div>
+                <div className="col">
+                    Number of Bathrooms
+                </div>
+                <div className="col">
+
+                </div>
+            </div>
+            <div className="row">
+                <div className="col">
+                    <Select value={location} onChange={(value) => setLocation(value)} options={locationOptions}/>
+                </div>
+                <div className="col input-group-md">
+                    <input className="form-control-lg" type="number" value={minPrice} onChange={(e) => setMinPrice(parseInt(e.target.value))} />
+                    
+                </div>
+                <div className="col">
+                    <input className="form-control-lg" type="number" value={maxPrice} onChange={(e) => setMaxPrice(parseInt(e.target.value))} />
+                </div>
+                <div className="col">
+                    <input className="form-control-lg" type="number" value={bedrooms} onChange={(e) => setBedrooms(parseInt(e.target.value))} />
+                </div>
+                <div className="col">
+                    <input className="form-control-lg" type="number" value={bathrooms} onChange={(e) => setBathrooms(parseInt(e.target.value))} />
+                </div>
+                <div className="col">
+                    <button className="btn-lg btn-primary" onClick={() => searchKijiji(location.label, location.value, minPrice, maxPrice, bedrooms, bathrooms)}>Search</button>
+                </div>
+            </div>     
         </div>
     )
 

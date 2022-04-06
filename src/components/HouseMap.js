@@ -4,6 +4,7 @@ import { flipShow} from '../redux/actions/houses'
 import { connect } from 'react-redux'
 import Marker from './Marker'
 import store from '../app'
+import MainPage from './MainPage'
 
 
 const HouseMap = (props) => {
@@ -28,7 +29,7 @@ const HouseMap = (props) => {
     return (
         
         <div style={{height: '90vh', width: '100%'}}>
-            {props.houses.length !== 0 && (
+            {props.houses.length !== 0 ? (
             <GoogleMapReact
             bootstrapURLKeys={{key: "AIzaSyBmdWIAJ1F4Iv8vaJoqH-qznJkO_2omCog"}}
             center={{
@@ -39,7 +40,7 @@ const HouseMap = (props) => {
             onChildMouseEnter={onMouseHoverCallBack}
             onChildMouseLeave={onMouseHoverCallBack}>
                 {houses.map((house) => ( <Marker key={house.id} show={house.show} lat={house.lat} lng={house.lng} house={house}/>))}
-            </GoogleMapReact> )}
+            </GoogleMapReact> ) : (<MainPage />)}
         </div>
     )
 }
