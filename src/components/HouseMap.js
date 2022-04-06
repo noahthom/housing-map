@@ -5,12 +5,13 @@ import { connect } from 'react-redux'
 import Marker from './Marker'
 import store from '../app'
 import MainPage from './MainPage'
+import SpinningLoader from './SpinningLoader'
 
 
 const HouseMap = (props) => {
 
     const [houses, setHouses] = useState([])
-    const [zoom, setZoom] = useState(12)
+    
     
 
     useEffect(() => {
@@ -29,6 +30,7 @@ const HouseMap = (props) => {
     return (
         
         <div style={{height: '90vh', width: '100%'}}>
+            {props.loading === true && <SpinningLoader />}
             {props.houses.length !== 0 ? (
             <GoogleMapReact
             bootstrapURLKeys={{key: "AIzaSyBmdWIAJ1F4Iv8vaJoqH-qznJkO_2omCog"}}
@@ -36,7 +38,7 @@ const HouseMap = (props) => {
                 lat: props.lat,
                 lng: props.lng
             }}
-            defaultZoom={zoom}
+            defaultZoom={12}
             onChildMouseEnter={onMouseHoverCallBack}
             onChildMouseLeave={onMouseHoverCallBack}>
                 {houses.map((house) => ( <Marker key={house.id} show={house.show} lat={house.lat} lng={house.lng} house={house}/>))}
@@ -50,7 +52,8 @@ const mapStatetoProps = (state) => {
     return {
         houses: state.houses,
         lat: state.lat,
-        lng: state.lng
+        lng: state.lng,
+        loading: state.loading
     }
 }
 

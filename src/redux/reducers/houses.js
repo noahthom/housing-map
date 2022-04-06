@@ -1,7 +1,8 @@
 const housesDefault = {
     lat: 0,
     lng: 0,
-    houses: []
+    houses: [],
+    loading: false
 }
 
 const housesReducer = (state = housesDefault, action) => {
@@ -31,6 +32,11 @@ const housesReducer = (state = housesDefault, action) => {
                 ...state,
                 lat: action.lat,
                 lng: action.lng
+            }
+        case 'FLIP_LOADING':
+            return {
+                ...state,
+                loading: !state.loading
             }
         default:
             return state

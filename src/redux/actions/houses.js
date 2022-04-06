@@ -19,3 +19,9 @@ export const setCenter = (lat = 0, lng = 0) => {
         lng
     }
 }
+
+export const flipLoader = () => {
+    return {
+        type: 'FLIP_LOADING'
+    }
+}
