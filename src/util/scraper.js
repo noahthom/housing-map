@@ -5,6 +5,14 @@ import { addHouses, flipLoader, setCenter } from '../redux/actions/houses'
 
 const searchKijiji = async (location, locationId, minPrice, maxPrice, bedrooms, bathrooms) => {
 
+    if(maxPrice < 0 || minPrice < 0){
+        return alert('Please enter a positive price!')
+    }else if(bedrooms < 0 || bathrooms < 0){
+        return alert('Please enter a positive number of bedrooms/bathrooms!')
+    }else if(maxPrice < minPrice){
+        return alert('The maximum price cannot be less than the minimum price!')
+    }
+
 
     store.dispatch(flipLoader())
 

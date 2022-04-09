@@ -9,7 +9,7 @@ import './styles/styles.scss'
 import 'normalize.css/normalize.css'
 
 
-const store = createStore(housesReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(housesReducer)
 
 
 const jsx = (
